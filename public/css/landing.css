@@ -1,0 +1,539 @@
+﻿.navbar-nav .nav-link {
+            position: relative;
+        }
+
+        .navbar-nav .nav-link.active-section {
+            color: var(--taxixi-dark);
+            font-weight: 600;
+        }
+
+        .navbar-nav .nav-link.active-section::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -0.25rem;
+            width: 36px;
+            height: 2px;
+            background: var(--taxixi-dark);
+            transform: translateX(-50%);
+            border-radius: 999px;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% -10%, rgba(255, 193, 7, 0.25), transparent 45%),
+                radial-gradient(circle at 80% 20%, rgba(15, 23, 42, 0.08), transparent 55%);
+            z-index: 0;
+        }
+
+        #inicio .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-full {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 3rem;
+            padding-bottom: clamp(3rem, 5vw, 7rem);
+            overflow: visible;
+        }
+        .hero-buttons {
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons .btn {
+            min-width: 180px;
+        }
+
+        .hero-phones-desktop {
+            position: absolute;
+            right: clamp(1rem, 6vw, 6%);
+            top: 40%;
+            transform: translateY(-50%);
+            z-index: 1;
+            display: none;
+            align-items: flex-end;
+            gap: 0;
+            pointer-events: none;
+            width: min(420px, 50vw);
+            min-width: 320px;
+            justify-content: flex-end;
+        }
+
+        .hero-phone {
+            width: 180px;
+            height: auto;
+            border-radius: 1.6rem;
+            box-shadow: 0 25px 60px rgba(15, 23, 42, 0.25);
+            transition: transform 0.6s ease, filter 0.3s ease;
+            background: linear-gradient(180deg, #111 0%, #1a1a1a 55%, #0a0a0a 100%);
+            border: 3px solid #0c0c0c;
+            padding: 0.35rem;
+            position: relative;
+        }
+
+        .hero-phone-1 {
+            transform: rotate(-18deg) translate(-30px, 10px);
+            z-index: 1;
+            filter: blur(0px);
+        }
+
+        .hero-phone-2 {
+            transform: rotate(-5deg);
+            z-index: 3;
+            margin-left: -50px;
+        }
+
+        .hero-phone-3 {
+            transform: rotate(18deg) translate(-40px, 10px);
+            z-index: 2;
+            margin-left: -30px;
+        }
+
+        .hero-phone::after,
+        .hero-phone::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            border-radius: 999px;
+            background: #1c1c1c;
+        }
+
+        .hero-phone::before {
+            height: 4px;
+            top: 8px;
+            width: 40%;
+        }
+
+        .hero-phone::after {
+            height: 16px;
+            bottom: 18px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #1f1f1f, #0e0e0e);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            top: clamp(122%, calc(100% - 3rem), calc(100% - 1.5rem));
+            bottom: auto;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: 3px solid rgba(15, 23, 42, 0.25);
+            background: rgba(255, 255, 255, 0.92);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 18px 35px rgba(15, 23, 42, 0.15);
+            z-index: 2;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .hero-scroll:hover {
+            transform: translate(-50%, -2px);
+            box-shadow: 0 25px 45px rgba(15, 23, 42, 0.2);
+        }
+
+        .hero-scroll-icon {
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            animation: bounceArrow 1.6s ease-in-out infinite;
+        }
+
+        .hero-scroll-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes bounceArrow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+
+        .hero-phones-mobile {
+            display: none;
+        }
+
+        .hero-phones-mobile-stack {
+            width: min(260px, 85vw);
+            height: 320px;
+            margin: 2rem auto 1rem;
+            position: relative;
+            z-index: 1;
+            display: none;
+            border-radius: 0;
+            border: none;
+            background: transparent;
+            text-align: center;
+        }
+        .hero-phones-mobile-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-phone-mobile {
+            position: absolute;
+            width: 100%;
+            max-width: 190px;
+            height: auto;
+            border-radius: 1.6rem;
+            box-shadow: 0 22px 42px rgba(15, 23, 42, 0.2);
+            background: linear-gradient(180deg, #fff 0%, #f5f5f5 100%);
+        }
+
+        .hero-mobile-1,
+        .hero-mobile-2,
+        .hero-mobile-3 {
+            top: 12%;
+        }
+
+        .hero-mobile-1 {
+            left: -6%;
+            z-index: 1;
+        }
+
+        .hero-mobile-2 {
+            left: 28%;
+            z-index: 4;
+        }
+
+        .hero-mobile-3 {
+            left: 62%;
+            z-index: 2;
+        }
+
+        .testimonial-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 0 1.5rem;
+            background: transparent;
+            width: 100%;
+        }
+
+        .testimonial-track {
+            display: flex;
+            gap: 1rem;
+            transition: transform 0.8s ease;
+            will-change: transform;
+            padding: 0 1.25rem;
+            align-items: stretch;
+            min-width: 100%;
+            margin: 0 auto;
+            max-width: 1200px;
+            width: min(1200px, 100%);
+        }
+
+        .testimonial-card {
+            flex: 0 0 clamp(240px, 33.3333%, 320px);
+            min-width: 230px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 1.25rem;
+            box-shadow: 0 25px 50px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(15, 23, 42, 0.06);
+        }
+
+        .contact-section {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.2) 60%, transparent);
+            position: relative;
+        }
+
+        .contact-panel {
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.12);
+            backdrop-filter: blur(18px);
+        }
+
+        .contact-panel .form-control {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(15, 23, 42, 0.1);
+            color: #1f1f1f;
+            border-radius: 0.65rem;
+            padding: 0.95rem 1.25rem;
+            box-shadow: inset 0 8px 20px rgba(15, 23, 42, 0.08);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-panel .form-control::placeholder {
+            color: #bfb4a6;
+        }
+
+        .contact-panel .form-control:focus {
+            border-color: #ffb509;
+            box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .contact-panel .form-control.is-invalid {
+            border-color: #f44336;
+        }
+
+        .card-soft {
+            border-radius: 1.5rem;
+            border: none;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+            background: white;
+        }
+
+        .list-group {
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        .funciona-step {
+            border: none;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e7e7e7;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .funciona-step:last-child {
+            border-bottom: none;
+        }
+
+        .funciona-step.active {
+            background: rgba(255, 193, 7, 0.15);
+            color: var(--taxixi-dark);
+            font-weight: 600;
+        }
+
+        .funciona-detail {
+            padding: 1rem;
+            border-radius: 1rem;
+            background-color: #fff;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .funciona-detail:hover,
+        .funciona-detail.active {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(18px);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .como-animate .funciona-detail {
+            animation: slideUp 0.6s ease forwards;
+            animation-delay: var(--delay, 0s);
+        }
+
+        .funciona-icon,
+        .funciona-bullet,
+        .funciona-bullet-alt {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 193, 7, 0.85);
+            background: transparent;
+            color: var(--taxixi-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
+            transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+        }
+
+        .funciona-icon.rotate-spin {
+            animation: iconRotate 0.75s ease;
+        }
+
+        .funciona-detail.active .funciona-icon {
+            background: var(--taxixi-yellow);
+            color: #0c0c0c;
+            border-color: rgba(255, 193, 7, 0.95);
+            box-shadow: 0 20px 35px rgba(255, 193, 7, 0.35);
+        }
+
+        @keyframes iconRotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .funciona-image {
+            width: min(300px, 100%);
+            max-width: 320px;
+            transition: width 0.4s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .phone-frame {
+            background: linear-gradient(180deg, #111 0%, #1b1b1b 100%);
+            color: #fff;
+            border: none;
+            width: min(320px, 100%);
+            height: auto;
+            padding: 1rem;
+            border-radius: 2rem;
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.25);
+        }
+
+        .facil-stack {
+            width: min(340px, 100%);
+            height: 360px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .facil-layer {
+            position: absolute;
+            width: 72%;
+            max-width: 260px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.6s ease;
+            --facil-offset-transform: translate(0px, 0px);
+            cursor: pointer;
+            transform: var(--facil-base-transform, rotate(-10deg)) var(--facil-offset-transform);
+        }
+
+        .facil-layer img {
+            width: 100%;
+            height: auto;
+            border-radius: 1.25rem;
+            box-shadow: 0 35px 60px rgba(15, 23, 42, 0.35);
+        }
+
+        @media (min-width: 992px) {
+            .hero-phones-desktop {
+                display: flex;
+            }
+
+            .hero-full {
+                padding-bottom: 12rem;
+            }
+
+            .hero-phones-mobile-stack {
+                display: none;
+            }
+
+            .hero-scroll {
+                display: inline-flex;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .hero-full {
+                min-height: auto;
+                padding-top: 3rem;
+                padding-bottom: 8rem;
+            }
+
+            .hero-phones-desktop {
+                display: none;
+            }
+
+            .hero-phones-mobile-stack {
+                display: block;
+                width: min(260px, 86vw);
+                height: 340px;
+            }
+            .funciona-image {
+                width: min(240px, 100%);
+            }
+            .como-visual {
+                order: 0;
+                margin-bottom: 1.5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .como-options-left {
+                order: 1;
+            }
+            .como-options-right {
+                order: 2;
+            }
+            .como-options-left,
+            .como-options-right {
+                width: 100%;
+            }
+            .como-options-left .funciona-detail,
+            .como-options-right .funciona-detail {
+                width: 100%;
+            }
+            .phone-frame {
+                width: min(280px, 90vw);
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .phone-frame h4,
+            .phone-frame p {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-phones-mobile-stack {
+                width: min(220px, 80vw);
+            }
+
+            .hero-phone-mobile {
+                max-width: 90px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            #facil-rapida {
+                padding-bottom: 6rem;
+            }
+
+            .hero-full {
+                padding-top: 2rem;
+                padding-bottom: 5rem;
+            }
+
+            .facil-stack {
+                width: min(240px, 90vw);
+                height: 300px;
+            }
+
+            .facil-layer {
+                width: 64%;
+            }
+            .funciona-image {
+                width: min(200px, 100%);
+            }
+        }
+        #facil-rapida {
+            margin-top: 5rem;
+            padding-top: 1rem;
+        }
+        #facil-rapida {
+            position: relative;
+            padding-bottom: 5rem;
+        }
+
