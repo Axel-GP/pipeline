@@ -1,9 +1,11 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
             const steps = window.taxixiSteps || [];
             const interactiveTiles = document.querySelectorAll('.funciona-detail[data-step-index]');
             const stepTitle = document.getElementById('step-title');
             const stepDesc = document.getElementById('step-desc');
             const stepImage = document.getElementById('funciona-image');
+            const stepVideo = document.getElementById('funciona-video');
+            const stepVideoSource = stepVideo?.querySelector('source');
 
             if (steps.length > 0 && interactiveTiles.length > 0) {
                 let activeIndex = 0;
@@ -39,7 +41,19 @@
                     if (stepDesc) {
                         stepDesc.textContent = step.descripcion;
                     }
-                    if (stepImage) {
+                    if (step.video && stepVideo) {
+                        if (stepVideoSource && stepVideoSource.src !== step.video) {
+                            stepVideoSource.src = step.video;
+                            stepVideo.load();
+                        }
+                        stepVideo.classList.remove('d-none');
+                        stepVideo.classList.remove('opacity-0');
+                        if (stepImage) {
+                            stepImage.classList.add('d-none');
+                        }
+                    } else if (stepImage) {
+                        stepVideo?.classList.add('d-none');
+                        stepImage.classList.remove('d-none');
                         stepImage.classList.add('opacity-0');
                         setTimeout(() => {
                             stepImage.src = step.imagen;
@@ -128,7 +142,9 @@
                 let carouselTimer = null;
                 let isDragging = false;
                 let dragStartX = 0;
+                let dragStartY = 0;
                 let baseTranslate = 0;
+                let horizontalDrag = false;
 
                 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
@@ -186,13 +202,15 @@
                     carouselTimer = setInterval(moveCarousel, 4800);
                 };
 
-                const startDrag = (clientX) => {
+                const startDrag = (clientX, clientY = 0) => {
                     if (isDragging) {
                         return;
                     }
                     isDragging = true;
                     dragStartX = clientX;
+                    dragStartY = clientY;
                     baseTranslate = currentTranslate;
+                    horizontalDrag = false;
                     pauseAutoSlide();
                     if (carouselViewport) {
                         carouselViewport.style.cursor = 'grabbing';
@@ -212,6 +230,7 @@
                         return;
                     }
                     isDragging = false;
+                    horizontalDrag = false;
                     if (carouselViewport) {
                         carouselViewport.style.cursor = '';
                     }
@@ -226,19 +245,33 @@
                 const bindPointerEvents = () => {
                     carouselTrack.addEventListener('mousedown', event => {
                         event.preventDefault();
-                        startDrag(event.clientX);
+                        startDrag(event.clientX, event.clientY);
                     });
                     carouselTrack.addEventListener('touchstart', event => {
-                        event.preventDefault();
-                        startDrag(event.touches[0].clientX);
+                        const touch = event.touches[0];
+                        if (!touch) {
+                            return;
+                        }
+                        startDrag(touch.clientX, touch.clientY);
                     }, { passive: false });
 
                     window.addEventListener('mousemove', event => {
                         onDragMove(event.clientX);
                     });
                     window.addEventListener('touchmove', event => {
-                        event.preventDefault();
-                        onDragMove(event.touches[0].clientX);
+                        const touch = event.touches[0];
+                        if (!touch || !isDragging) {
+                            return;
+                        }
+                        const deltaX = Math.abs(touch.clientX - dragStartX);
+                        const deltaY = Math.abs(touch.clientY - dragStartY);
+                        if (!horizontalDrag && deltaX > deltaY) {
+                            horizontalDrag = true;
+                        }
+                        if (horizontalDrag) {
+                            event.preventDefault();
+                            onDragMove(touch.clientX);
+                        }
                     }, { passive: false });
 
                     window.addEventListener('mouseup', stopDrag);
@@ -296,11 +329,16 @@
                 requestAnimationFrame(step);
             };
 
+            const getNavbarHeight = () => {
+                const navbar = document.querySelector('nav.navbar');
+                return navbar ? navbar.offsetHeight : 0;
+            };
             const heroScroll = document.querySelector('.hero-scroll');
             const scrollToServices = () => {
                 const target = document.getElementById('servicios');
                 if (target) {
-                    const offset = target.getBoundingClientRect().top + window.scrollY - 40;
+                    const navHeight = getNavbarHeight();
+                    const offset = target.getBoundingClientRect().top + window.scrollY - navHeight - 8;
                     smoothScrollTo(Math.max(0, offset));
                 }
             };
@@ -318,10 +356,11 @@
                         if (href && href.startsWith('#')) {
                             event.preventDefault();
                             const target = document.querySelector(href);
-                            if (target) {
-                                const targetOffset = target.getBoundingClientRect().top + window.scrollY - 40;
+                              if (target) {
+                                const navHeight = getNavbarHeight();
+                                const targetOffset = target.getBoundingClientRect().top + window.scrollY - navHeight - 8;
                                 smoothScrollTo(Math.max(0, targetOffset));
-                            }
+                              }
                         }
                         if (navElement.classList.contains('show')) {
                             navCollapse.hide();
@@ -335,9 +374,22 @@
             });
         }
 
-            const sectionLinks = Array.from(document.querySelectorAll('#navLanding .nav-link[href^="#"]'));
+            const sectionLinks = Array.from(
+                document.querySelectorAll('#navLanding .nav-link[href^="#"]:not([href="#"])')
+            );
+            const getSectionElement = (link) => {
+                const href = link.getAttribute('href');
+                if (!href) {
+                    return null;
+                }
+                try {
+                    return document.querySelector(href);
+                } catch (error) {
+                    return null;
+                }
+            };
             const sections = sectionLinks
-                .map(link => document.querySelector(link.getAttribute('href')))
+                .map(getSectionElement)
                 .filter(Boolean);
 
             const updateActiveSection = () => {
@@ -360,8 +412,111 @@
             window.addEventListener('scroll', updateActiveSection, { passive: true });
             window.addEventListener('resize', updateActiveSection);
             updateActiveSection();
+
+            const counterElements = Array.from(document.querySelectorAll('.servicios-contador[data-target]'));
+            const liveCounterElement = document.querySelector('.servicios-contador[data-live-counter="total-services"]');
+            const observerSupported = typeof IntersectionObserver !== 'undefined';
+            const shouldHandleCounters = counterElements.length > 0 || liveCounterElement;
+
+            if (shouldHandleCounters) {
+                const animateContador = (element, overrideTarget = null) => {
+                    const target = Number(overrideTarget ?? element.dataset.target) || 0;
+                    const duration = 1300;
+                    const locale = document.documentElement.lang || navigator.language || 'es-ES';
+                    const formatter = new Intl.NumberFormat(locale);
+                    let startTime = null;
+
+                    const step = (timestamp) => {
+                        if (!startTime) {
+                            startTime = timestamp;
+                        }
+                        const progress = Math.min((timestamp - startTime) / duration, 1);
+                        const currentValue = Math.floor(target * progress);
+                        element.textContent = formatter.format(currentValue);
+                        if (progress < 1) {
+                            requestAnimationFrame(step);
+                        } else {
+                            element.textContent = formatter.format(target);
+                        }
+                    };
+
+                    requestAnimationFrame(step);
+                };
+
+                let liveServicesValue = null;
+                let liveCounterInView = false;
+                let liveCounterAnimated = false;
+
+                const attemptLiveCounterAnimation = () => {
+                    if (!liveCounterElement || liveServicesValue === null || liveCounterAnimated) {
+                        return;
+                    }
+                    if (observerSupported && !liveCounterInView) {
+                        return;
+                    }
+                    liveCounterElement.dataset.animated = 'true';
+                    animateContador(liveCounterElement, liveServicesValue);
+                    liveCounterAnimated = true;
+                };
+
+                window.addEventListener('taxixiTotalServices', event => {
+                    liveServicesValue = Number(event.detail) || 0;
+                    if (liveCounterElement) {
+                        liveCounterElement.dataset.target = liveServicesValue;
+                    }
+                    attemptLiveCounterAnimation();
+                });
+
+                const initializeObserver = () => {
+                    if (!observerSupported) {
+                        counterElements.forEach(el => animateContador(el));
+                        return;
+                    }
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            const targetElement = entry.target;
+                            if (targetElement === liveCounterElement) {
+                                if (!entry.isIntersecting) {
+                                    liveCounterInView = false;
+                                    return;
+                                }
+                                liveCounterInView = true;
+                                if (liveCounterAnimated) {
+                                    observer.unobserve(targetElement);
+                                    return;
+                                }
+                                if (liveServicesValue === null) {
+                                    return;
+                                }
+                                liveCounterElement.dataset.animated = 'true';
+                                animateContador(liveCounterElement, liveServicesValue);
+                                liveCounterAnimated = true;
+                                observer.unobserve(targetElement);
+                                return;
+                            }
+
+                            if (!entry.isIntersecting) {
+                                return;
+                            }
+                            if (targetElement.dataset.animated === 'true') {
+                                observer.unobserve(targetElement);
+                                return;
+                            }
+                            targetElement.dataset.animated = 'true';
+                            animateContador(targetElement);
+                            observer.unobserve(targetElement);
+                        });
+                    }, { threshold: 0.5 });
+
+                    counterElements.forEach(el => observer.observe(el));
+                    if (liveCounterElement) {
+                        observer.observe(liveCounterElement);
+                    }
+                };
+
+                initializeObserver();
+            }
     });
-
-
 
 

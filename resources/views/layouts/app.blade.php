@@ -1,14 +1,15 @@
 <!doctype html>
-<html lang="es">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TAXIXI — Landing</title>
+            <title>@yield('title', 'Galtaxi')</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/taxixi_icono.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         :root {
-            --taxixi-yellow: #ffc107;
+            --taxixi-yellow: #0098cc;
             --taxixi-dark: #1f1f1f;
             --taxixi-gray: #e2e8f0;
             --taxixi-light: #f8f9fa;
@@ -100,5 +101,18 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 @stack('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+        let node;
+        while ((node = walker.nextNode())) {
+            if (node.nodeValue && /\uFEFF/.test(node.nodeValue)) {
+                node.nodeValue = node.nodeValue.replace(/\uFEFF/g, '');
+            }
+        }
+    });
+</script>
 </body>
 </html>
+
+

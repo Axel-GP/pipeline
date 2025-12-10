@@ -2,41 +2,82 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class LandingController extends Controller
 {
-    /**
-     * Muestra la landing principal de TAXIXI.
-     */
-    public function index()
+    public function index($locale)
     {
-        return view('landing');
+        return view('pages.home')
+            ->with('captchaQuestion', $this->generateCaptchaQuestion());
     }
 
-    /**
-     * Muestra la página dirigida a los taxistas.
-     */
-    public function taxistas()
+    public function taxistas($locale)
     {
-        return view('taxistas');
+        return view('pages.taxistas');
     }
 
-    /**
-     * Valida el formulario de contacto/reserva y registra los datos de prueba en el log.
-     */
-    public function store(Request $request)
+    public function privacyPolicy($locale)
+    {
+        return view('pages.privacy');
+    }
+
+    public function legalNotice($locale)
+    {
+        return view('pages.legal');
+    }
+
+    public function cookiePolicy($locale)
+    {
+        return view('pages.cookies');
+    }
+
+    public function store(Request $request, $locale)
     {
         $validated = $request->validate([
             'nombre' => 'required|string|max:100',
-            'telefono' => 'required|string|max:20',
-            'fecha_hora' => 'required|date',
-            'mensaje' => 'nullable|string|max:500',
+            'telefono' => ['required', 'regex:/^\+?[0-9]{9,15}$/'],
+            'mensaje' => 'required|string|max:500',
+            'captcha' => 'required|integer',
+        ], [
+            'telefono.regex' => __('ui.contact_form.validation_phone'),
         ]);
 
-        Log::info('Solicitud de reserva TAXIXI', $validated);
+        $expectedCaptcha = session()->pull('landing_captcha_answer');
+        if ($expectedCaptcha === null || intval($validated['captcha']) !== $expectedCaptcha) {
+            return $this->redirectToContactSection()
+                ->withErrors(['captcha' => __('ui.contact_form.captcha_invalid')])
+                ->withInput();
+        }
 
-        return back()->with('status', 'Gracias por contactar con TAXIXI. Pronto confirmaremos tu reserva.');
+        ContactMessage::create([
+            'nombre' => $validated['nombre'],
+            'telefono' => $validated['telefono'],
+            'mensaje' => $validated['mensaje'],
+            'locale' => app()->getLocale() ?: 'es',
+            'ip' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+        ]);
+
+        Log::info('Solicitud de reserva Galtaxi', $validated);
+
+        return $this->redirectToContactSection()->with('status', trans('home.sections.contact.success'));
+    }
+
+    private function generateCaptchaQuestion(): string
+    {
+        $first = random_int(1, 8);
+        $second = random_int(1, 8);
+        session(['landing_captcha_answer' => $first + $second]);
+
+        return trans('ui.captcha_question', ['first' => $first, 'second' => $second]);
+    }
+
+    private function redirectToContactSection()
+    {
+        $homeRoute = route('landing', ['locale' => app()->getLocale()]);
+        return redirect()->to($homeRoute . '#contacto');
     }
 }
