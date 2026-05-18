@@ -35,9 +35,11 @@
                         <h1 class="display-4 fw-bold lh-base hero-headline">
                             <span class="hero-headline-line d-block">{{ $hero['headline'] }}</span>
                             <span class="hero-title d-block text-center">
-                                <img src="{{ asset('img/Logo_Normal.png') }}" alt="{{ $hero['title'] }}" class="hero-title-logo">
+                                <img src="{{ asset('img/Logo_Rectangular.png') }}" alt="{{ $hero['title'] }}" class="hero-title-logo">
                             </span>
+
                         </h1>
+
                         <p class="lead text-muted mb-4 hero-subtext">{{ $hero['subtitle'] }}</p>
                         <div class="d-flex flex-wrap gap-3 hero-buttons">
                             <a href="#contacto" class="hero-store-link">
@@ -47,6 +49,7 @@
                                 <img src="{{ asset('img/app-store.png') }}" alt="Descargar en App Store">
                             </a>
                         </div>
+
                         <div class="mt-3">
                             <small class="text-muted">{!! $hero['download_note'] !!}</small>
                         </div>
@@ -63,6 +66,7 @@
                         </button>
                     -->
                     </div>
+
                     <div class="col-12 d-lg-none hero-phones-mobile-wrapper">
                         <div class="hero-phones-mobile-stack">
                             <img src="{{ asset('img/inicio.jpeg') }}" class="hero-phone-mobile hero-mobile-1" alt="Pantalla Galtaxi 1">
@@ -70,13 +74,13 @@
                             <img src="{{ asset('img/perfil.jpeg') }}" class="hero-phone-mobile hero-mobile-3" alt="Pantalla Galtaxi 3">
                         </div>
                     </div>
+
+            </div>
                 </div>
+                <div class="taxi-track" data-animate="force" style="height:48px; overflow:hidden;">
+                        <img src="img/taxi-arriva.svg" alt="Taxi" class="taxi">
             </div>
         </section>
-
-        <div class="taxi-track" data-animate="force" style="height:48px; overflow:hidden; top:-250px">
-            <img src="img/taxi-arriva.svg" alt="Taxi" class="taxi">
-        </div>
         <!-- Servicios -->
         <section id="servicios" class="section-padding bg-light">
             <div class="container">
@@ -116,10 +120,10 @@
                     <p class="text-uppercase text-muted mb-1">{{ $sections['experience']['eyebrow'] }}</p>
                     <h2 class="section-title">{{ $sections['experience']['title'] }}</h2>
                 </div>
-                <div class="row align-items-center como-funciona-grid g-4">
+                <div class="row align-items-center como-funciona-grid g-4 order-1 order-lg-1">
                     <div class="col-lg-4 d-flex flex-column gap-4 como-options-left">
                         @foreach ($steps as $index => $paso)
-                            <div class="funciona-detail d-flex gap-3" data-step-index="{{ $index }}" style="--delay: {{ $index * 0.12 }}s">
+                            <div class="funciona-detail d-flex gap-3 clickable" data-step-index="{{ $index }}" style="--delay: {{ $index * 0.12 }}s">
                                 <span class="funciona-bullet flex-shrink-0 funciona-icon">{{ $index + 1 }}</span>
                                 <div>
                                     <h5 class="mb-1">{{ $paso['titulo'] }}</h5>
@@ -128,7 +132,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="col-lg-4 d-flex justify-content-center como-visual">
+                    <div class="col-lg-4 d-flex justify-content-center como-visual order-0 order-lg-0">
                         <div class="card card-soft p-4 text-center phone-frame">
                             <img id="funciona-image" src="{{ $steps[0]['imagen'] ?? '' }}" alt="Pantalla Galtaxi" class="img-fluid rounded funciona-image funciona-media">
                             <video id="funciona-video" class="rounded funciona-image funciona-video funciona-media d-none" autoplay loop muted playsinline poster="{{ asset('img/busca.jpeg') }}">
@@ -198,7 +202,7 @@
                 </div>
             </div>
             <div class="testimonial-carousel">
-                <div class="testimonial-track">
+                <div class="testimonial-track d-flex gap-3 md-3 ">
                     @foreach ($testimonials as $testimonio)
                         <div class="card card-soft p-4 testimonial-card">
                             <div class="d-flex align-items-center gap-3 mb-3">
@@ -230,10 +234,8 @@
                                     {{ session('status') }}
                                 </div>
                             @endif
-                            @php
-                                $captchaLabel = str_replace(':question', $captchaQuestion ?? 'Resuelve la suma', $sections['contact']['form']['captcha']);
-                            @endphp
-                            <form action="{{ route('reserva.store', ['locale' => app()->getLocale()]) }}" method="POST" class="row g-3">
+
+                            <form id='reserva-form' action="{{ route('reserva.store', ['locale' => app()->getLocale()]) }}" method="POST" class="row g-3">
                                 @csrf
                                 <div class="col-md-6">
                                     <label class="form-label">{{ $sections['contact']['form']['name'] }}</label>
@@ -257,16 +259,21 @@
                                     @enderror
                                 </div>
                                 <div class="col-12">
-                                    <label class="form-label">{{ $captchaLabel }}</label>
-                                    <input type="text" name="captcha" value="{{ old('captcha') }}" required class="form-control focus-glow @error('captcha') is-invalid @enderror">
-                                    @error('captcha')
-                                        <div class="invalid-feedback d-block">{{ $message }}</div>
-                                    @enderror
+
+                                    <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+                                    <p class="text-muted small">
+                                    Este sitio está protegido por reCAPTCHA y se aplican la
+                                    <a href="https://policies.google.com/privacy?hl=es-419" target="_blank">Política de Privacidad</a> y los
+                                    <a href="https://www.youtube.com/static?gl=es&template=terms&hl=es" target="_blank">Términos de Servicio</a> de Google.
+                                    </p>
                                 </div>
                                 <div class="col-12 text-end">
                                     <button type="submit" class="btn btn-primary-taxixi px-4">{{ $sections['contact']['form']['submit'] }}</button>
                                 </div>
                             </form>
+                            <script src="https://www.google.com/recaptcha/api.js?render=6Lc5NS0sAAAAAFyfHcnmO_aYXbuyV8Q-P7fNY_SJ"></script>
+
+
                         </div>
                     </div>
                 </div>

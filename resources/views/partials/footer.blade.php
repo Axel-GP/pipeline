@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-4 mb-3 mb-md-0">
                 <p class="mb-1">{{ __('ui.footer.tagline') }}</p>
-                <small class="text-muted">{{ __('ui.footer.copyright', ['year' => date('Y')]) }}</small>
+                <small class="text-light">{{ __('ui.footer.copyright', ['year' => date('Y')]) }}</small>
             </div>
             <div class="col-md-4 text-md-end">
                 <a href="{{ route('privacy', ['locale' => app()->getLocale()]) }}" class="text-light d-block mb-1">{{ __('ui.footer.privacy') }}</a>

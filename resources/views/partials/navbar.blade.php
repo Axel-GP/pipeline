@@ -15,9 +15,9 @@
         ];
         $taxistaIcon = $taxistaIcons[$currentLocale] ?? $taxistaIcons['es'];
                 $languageOptions = [
-            'es' => ['label' => __('ui.language_names.es'), 'flag' => 'ES'],
-            'gl' => ['label' => __('ui.language_names.gl'), 'flag' => 'GL'],
-            'en' => ['label' => __('ui.language_names.en'), 'flag' => 'EN'],
+            'es' => ['label' => __('ui.language_names.es'), 'flag' => 'bandera_de_españa.svg.webp', 'acronym'=> 'ES'  ],
+            'gl' => ['label' => __('ui.language_names.gl'), 'flag' => 'bandera_gallega.png', 'acronym'=> 'GL'],
+            'en' => ['label' => __('ui.language_names.en'), 'flag' => 'bandera_reino_unido.png', 'acronym'=> 'EN'],
         ];
         $currentLanguage = $languageOptions[$currentLocale] ?? $languageOptions['es'];
     @endphp
@@ -26,7 +26,7 @@
     <div class="container">
         <div class="navbar-brand">
             <a href="{{ $homeRoute }}" class="navbar-brand-logo-link">
-                <img src="{{ asset('img/Logo_Rectangular.png') }}" alt="Galtaxi logo" class="navbar-brand-logo" height="44">
+                <img src="{{ asset('img/galtaxi/Logo_Rectangular_Transparente.png') }}" alt="Galtaxi logo" class="navbar-brand-logo" height="44">
                 <span class="visually-hidden">Galtaxi</span>
             </a>
             <!--
@@ -43,15 +43,15 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="langDropdownLanding" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="me-1" aria-hidden="true">{{ $currentLanguage['flag'] }}</span>
-                        {{ $currentLanguage['label'] }}
+                        <img src="{{ asset('img/' . $currentLanguage['flag']) }}" alt="{ $currentLanguage['label'] }}" class="me-1" style="height: 16px; width: 30px;"  >{{ $currentLanguage['acronym'] }} </span>
+
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="langDropdownLanding">
                         @foreach ($availableLocales as $locale)
                             @continue($locale === $currentLocale)
                             <li>
                                 <a class="dropdown-item d-flex align-items-center gap-2" href="{{ $buildRouteForLocale($locale) }}">
-                                    <span aria-hidden="true">{{ $languageOptions[$locale]['flag'] }}</span>
+                                    <img src="{{ asset('img/' . $languageOptions[$locale]['flag']) }}" alt="{{ $languageOptions[$locale]['label'] }} flag" style="height: 16px; width: 30px">
                                     {{ $languageOptions[$locale]['label'] }}
                                 </a>
                             </li>
@@ -75,9 +75,3 @@
         </div>
     </div>
 </nav>
-
-
-
-
-
-

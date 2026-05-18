@@ -1,180 +1,178 @@
 ﻿<?php
 
 return [
-    'meta_title' => 'Aviso legal | Galtaxi',
-    'document_title' => 'DocumentaciÃ³n',
-    'page_title' => 'Aviso legal',
-    'content' => <<<'HTML'
-        <h2>1. General information</h2>
-        <p>
-            In compliance with the provisions of Law 34/2002, of July 11, on Information Society Services and Electronic Commerce,
-            it is hereby reported that the website accessible at the URL
-            <a href="https://web.galtaxi.com/" rel="noopener noreferrer">https://web.galtaxi.com/</a>
-            (hereinafter, the â€œWebsiteâ€) is owned by:
-        </p>
-        <ul>
-            <li><strong>Owner:</strong> LfanTink S.L. (hereinafter, â€œGaltaxiâ€)</li>
-            <li><strong>Tax ID (CIF/NIF):</strong> B76318112</li>
-            <li><strong>Registered address:</strong> Calle Virgen de la PeÃ±a, 2, 35600 Puerto del Rosario, Las Palmas, Spain</li>
-            <li><strong>Contact email:</strong> <a href="mailto:hola@galtaxi.com">hola@galtaxi.com</a></li>
-            <li><strong>Phone:</strong> +34 828 111 999</li>
-        </ul>
-        <p>
-            The purpose of this document is to regulate the general conditions of use of the Website and safeguard the protection of users.
-            Access to and use of the Website implies full and unconditional acceptance of each and every provision
-            included in this Legal Notice, in the version published by Galtaxi at the time of access.
-        </p>
-        <p>
-            Galtaxi reserves the right to modify this Legal Notice at any time, as well as any other terms of use
-            or policies applicable to the Website.
-        </p>
+	'meta_title' => 'Aviso legal | Galtaxi',
+	'document_title' => 'Documentación',
+	'page_title' => 'Aviso legal',
+	'content' => <<<'HTML'
+		<h2>1. Información xeral</h2>
+		<p>
+			En cumprimento do disposto na Lei 34/2002, do 11 de xullo, de Servizos da Sociedade da Información e de Comercio Electrónico,
+			infórmase de que o sitio web accesible na URL
+			<a href="https://web.galtaxi.com/" rel="noopener noreferrer">https://web.galtaxi.com/</a>
+			(en diante, o "Sitio Web") é propiedade de:
+		</p>
+		<ul>
+			<li><strong>Titular:</strong> LfanTink S.L. (en diante, "Galtaxi")</li>
+			<li><strong>NIF/CIF:</strong> B76318112</li>
+			<li><strong>Domicilio social:</strong> Rúa Virxe da Pena, 2, 35600 Puerto del Rosario, Las Palmas, España</li>
+			<li><strong>Correo electrónico de contacto:</strong> <a href="mailto:hola@galtaxi.com">hola@galtaxi.com</a></li>
+			<li><strong>Teléfono:</strong> +34 828 111 999</li>
+		</ul>
+		<p>
+			A finalidade deste documento é regular as condicións xerais de uso do Sitio Web e salvagardar a protección dos usuarios.
+			O acceso e uso do Sitio Web implica a aceptación plena e sen reservas de todas e cada unha das disposicións
+			incluídas neste Aviso Legal, na versión publicada por Galtaxi no momento en que se produza o acceso.
+		</p>
+		<p>
+			Galtaxi resérvase o dereito de modificar este Aviso Legal en calquera momento, así como calquera outra condición de uso
+			ou políticas aplicables ao Sitio Web.
+		</p>
 
-        <h2>2. Purpose and scope of application</h2>
-        <p>
-            Through the Website, Galtaxi provides users with information about its transport services, transfers, airport pickups,
-            bookings, and other related activities.
-        </p>
-        <p>
-            Access to certain content or services may require the acceptance of specific conditions which, where applicable,
-            replace, supplement, and/or modify these general conditions.
-        </p>
-        <p>
-            The user undertakes to make diligent use of the Website, its contents, and services, and to respect at all times the applicable legislation,
-            good faith, morality, generally accepted good customs, and public order.
-        </p>
+		<h2>2. Obxecto e ámbito de aplicación</h2>
+		<p>
+			A través do Sitio Web, Galtaxi facilita aos usuarios información sobre os seus servizos de transporte, traslados, recollidas en aeroportos,
+			reservas e outras actividades relacionadas.
+		</p>
+		<p>
+			O acceso a determinados contidos ou servizos pode requirir a aceptación de condicións particulares que, no seu caso,
+			substitúen, complementan e/ou modifican estas condicións xerais.
+		</p>
+		<p>
+			O usuario comprométese a facer un uso dilixente do Sitio Web, os seus contidos e servizos, e a respectar en todo momento a lexislación aplicable,
+			a boa fe, a moralidade, os bos costumes xeralmente aceptados e a orde pública.
+		</p>
 
-        <h2>3. Protection of personal data</h2>
-        <p>
-            The collection and processing of usersâ€™ personal data on the Website shall be governed by the provisions of Galtaxiâ€™s
-            <a href="https://web.galtaxi.com/politica-de-privacidad">Privacy Policy</a>, which the user must read and, where appropriate, accept
-            in order to use forms or services that involve the processing of their personal data.
-        </p>
+		<h2>3. Protección de datos persoais</h2>
+		<p>
+			A recollida e tratamento dos datos persoais dos usuarios no Sitio Web rexeranse polo disposto na
+			<a href="https://web.galtaxi.com/politica-de-privacidad">Política de Privacidade</a> de Galtaxi, que o usuario deberá ler e, no seu caso, aceptar
+			para poder utilizar os formularios ou servizos que impliquen o tratamento dos seus datos persoais.
+		</p>
 
-        <h2>4. User consent</h2>
-        <p>
-            The submission of personal data through the Website, via the forms provided or by sending emails
-            to Galtaxiâ€™s contact addresses, constitutes the senderâ€™s express consent to the processing of such data
-            in accordance with the purposes indicated in each case and in the Privacy Policy.
-        </p>
+		<h2>4. Consentimento do usuario</h2>
+		<p>
+			O envío de datos persoais a través do Sitio Web, mediante os formularios dispostos ou o envío de correos electrónicos
+			aos enderezos de contacto de Galtaxi, supón o consentimento expreso do remitente ao tratamento dos mesmos
+			de acordo coas finalidades indicadas en cada caso e na Política de Privacidade.
+		</p>
 
-        <h2>5. Use of the Website</h2>
-        <p>
-            The user undertakes not to carry out, through the Website, any action that may cause damage, interrupt, or impair
-            the normal functioning of the Website, or the property and rights of Galtaxi, other users, or third parties.
-        </p>
-        <p>
-            The user expressly agrees not to use the contact details obtained from the Website for sending unsolicited commercial communications,
-            spam, or any other massive and unauthorized use.
-        </p>
-        <p>
-            Galtaxi may remove or suspend, at any time and without prior notice, access to the Website for those users
-            who fail to comply with the provisions of this Legal Notice.
-        </p>
+		<h2>5. Uso do Sitio Web</h2>
+		<p>
+			O usuario comprométese a non realizar, a través do Sitio Web, ningunha acción que poida provocar danos, interromper ou prexudicar
+			o normal funcionamento do Sitio Web, ou os bens e dereitos de Galtaxi, doutros usuarios ou de terceiros.
+		</p>
+		<p>
+			O usuario acepta expresamente non utilizar os datos de contacto obtidos do Sitio Web para o envío de comunicacións comerciais non solicitadas,
+			spam, ou calquera outro uso masivo e non autorizado.
+		</p>
+		<p>
+			Galtaxi poderá retirar ou suspender, en calquera momento e sen necesidade de aviso previo, o acceso ao Sitio Web a aqueles usuarios
+			que incumpran o disposto neste Aviso Legal.
+		</p>
 
-        <h2>6. Contents</h2>
-        <p>
-            Galtaxi makes reasonable efforts to ensure that the information and content on the Website are reliable, useful, and up to date.
-            However, it cannot guarantee the absence of errors or omissions, nor the accuracy of the content at all times.
-        </p>
-        <p>
-            Use of the information and content on the Website is carried out under the sole responsibility of the user. Galtaxi shall not be liable
-            for any damages of any kind that may arise from the use of such information.
-        </p>
-        <p>
-            The Website may contain links to third-party external pages. Galtaxi is not responsible for the content of such pages
-            nor for any consequences arising from access to those links.
-        </p>
+		<h2>6. Contidos</h2>
+		<p>
+			Galtaxi realiza esforzos razoables para asegurar que a información e os contidos do Sitio Web sexan fiables, útiles e actualizados.
+			Non obstante, non pode garantir a ausencia de erros ou omisións, nin a exactitude dos contidos en todo momento.
+		</p>
+		<p>
+			O uso da información e contidos do Sitio Web lévase a cabo baixo a exclusiva responsabilidade do usuario. Galtaxi non será responsable
+			de ningún tipo de danos que poidan derivarse do uso de dita información.
+		</p>
+		<p>
+			O Sitio Web pode conter enlaces a páxinas externas de terceiros. Galtaxi non se fai responsable do contido de ditas páxinas
+			nin das consecuencias que se deriven do acceso a esas ligazóns.
+		</p>
 
-        <h2>7. Intellectual and industrial property</h2>
-        <p>
-            All intellectual property rights, industrial property rights, and any other analogous rights over the Website and its contents
-            (texts, designs, logos, trademarks, navigation structure, source code, photographs, videos, graphics, etc.)
-            are owned by Galtaxi or by third parties that have authorized their use.
-        </p>
-        <p>
-            Access to the Website shall not, under any circumstances, be understood as a waiver, transfer, license, or assignment, in whole or in part,
-            of such rights, unless expressly stated otherwise.
-        </p>
-        <p>
-            The user is authorized to view the Website and its contents, as well as to make temporary copies
-            provided that this is strictly necessary for browsing.
-        </p>
-        <p>
-            Any reproduction, distribution, transformation, public communication, making available, extraction,
-            reuse, or any other form of exploitation of the Website or its contents, in whole or in part, is prohibited without the prior
-            written authorization of Galtaxi or the corresponding rights holders.
-        </p>
+		<h2>7. Propiedade intelectual e industrial</h2>
+		<p>
+			Todos os dereitos de propiedade intelectual, industrial e calquera outro dereito análogo sobre o Sitio Web e os seus contidos
+			(textos, deseños, logotipos, marcas, estrutura de navegación, código fonte, fotografías, vídeos, gráficos, etc.)
+			son propiedade de Galtaxi ou de terceiros que autorizaron o seu uso.
+		</p>
+		<p>
+			O acceso ao Sitio Web non suporá en ningún caso a renuncia, transmisión, licenza ou cesión total nin parcial de ditos dereitos,
+			agás que se indique expresamente o contrario.
+		</p>
+		<p>
+			O usuario está autorizado a visualizar o Sitio Web e os seus contidos, así como a realizar copias temporais
+			sempre que sexa estritamente necesario para a navegación.
+		</p>
+		<p>
+			Queda prohibida calquera reprodución, distribución, transformación, comunicación pública, posta a disposición, extracción,
+			reutilización ou calquera outra forma de explotación do Sitio Web ou dos seus contidos, total ou parcialmente, sen a previa
+			autorización escrita de Galtaxi ou dos titulares dos dereitos correspondentes.
+		</p>
 
-        <h2>8. Links (hyperlinks) to the Website</h2>
-        <p>
-            The creation of hyperlinks pointing to the Website is permitted provided that the following conditions are met:
-        </p>
-        <ul>
-            <li>The link must lead only to the Websiteâ€™s home page, unless expressly authorized by Galtaxi.</li>
-            <li>No â€œframesâ€ or frames that surround the pages of the Website may be created.</li>
-            <li>No false, inaccurate, or incorrect statements or indications may be made about Galtaxi, its services, or its employees.</li>
-            <li>It may not be implied that Galtaxi has authorized the link or has supervised the contents of the originating page, unless expressly authorized.</li>
-            <li>
-                The page from which the link is established may not contain unlawful content or content contrary to morality, public order, or the rights of third parties.
-            </li>
-        </ul>
-        <p>
-            The creation of the link shall in no case imply the existence of any relationship between Galtaxi and the owner of the site from which it is established,
-            nor the acceptance or approval by Galtaxi of its contents or services.
-        </p>
+		<h2>8. Ligazóns (hiperenlaces) ao Sitio Web</h2>
+		<p>
+			Permítese a creación de hiperenlaces que apunten ao Sitio Web sempre que se cumpran as seguintes condicións:
+		</p>
+		<ul>
+			<li>A ligazón debe dirixir unicamente á páxina de inicio do Sitio Web, salvo autorización expresa de Galtaxi.</li>
+			<li>Non se poderán crear "frames" ou marcos que rodeen as páxinas do Sitio Web.</li>
+			<li>Non se realizarán manifestacións ou indicacións falsas, inexactas ou incorrectas sobre Galtaxi, os seus servizos ou os seus empregados.</li>
+			<li>Non se poderá facer crer que Galtaxi autorizou a ligazón ou que supervisou os contidos da páxina de orixe, salvo autorización expresa.</li>
+			<li>
+				A páxina desde onde se estableza a ligazón non poderá conter contidos ilícitos nin contrarios á moral, á orde pública nin aos dereitos de terceiros.
+			</li>
+		</ul>
+		<p>
+			O establecemento da ligazón non implicará en ningún caso a existencia de relación algunha entre Galtaxi e o titular do sitio desde onde se estableza,
+			nin a aceptación ou aprobación por parte de Galtaxi dos seus contidos ou servizos.
+		</p>
 
-        <h2>9. Security</h2>
-        <p>
-            Galtaxi has adopted the technical and organizational measures reasonably necessary to ensure the security of the information and personal data
-            processed through the Website, preventing their alteration, loss, processing, or unauthorized access.
-        </p>
-        <p>
-            However, the user should be aware that security measures on the Internet are not impregnable.
-        </p>
+		<h2>9. Seguridade</h2>
+		<p>
+			Galtaxi adoptou as medidas técnicas e organizativas razoablemente necesarias para garantir a seguridade da información e dos datos persoais
+			tratados a través do Sitio Web, evitando a súa alteración, perda, tratamento ou acceso non autorizado.
+		</p>
+		<p>
+			Non obstante, o usuario debe ser consciente de que as medidas de seguridade en Internet non son inexpugnables.
+		</p>
 
-        <h2>10. Disclaimer of warranties and liability</h2>
-        <p>
-            Galtaxi does not guarantee the availability, continuity, or proper functioning of the Website at all times and, to the maximum extent permitted by law,
-            excludes any liability for damages of any kind that may arise from the lack of availability or continuity thereof.
-        </p>
-        <p>
-            Galtaxi does not control nor guarantee the absence of viruses or other harmful elements in the Websiteâ€™s content or in services
-            provided by third parties through it. Consequently, it shall not be liable for any damage that such elements may cause
-            to the userâ€™s computer system, electronic documents, or files.
-        </p>
-        <p>
-            The user shall be liable for any damages of any kind that Galtaxi may suffer as a result of the userâ€™s breach
-            of the law, this Legal Notice, or the other conditions established on the Website.
-        </p>
+		<h2>10. Exclusión de garantías e responsabilidade</h2>
+		<p>
+			Galtaxi non garante a dispoñibilidade, continuidade nin o correcto funcionamento do Sitio Web en todo momento e, no máximo permitido pola lei,
+			exclúe calquera responsabilidade por danos e prexuízos de calquera natureza que poidan derivarse da falta de dispoñibilidade ou continuidade do mesmo.
+		</p>
+		<p>
+			Galtaxi non controla nin garante a ausencia de virus nin doutros elementos nocivos nos contidos do Sitio Web ou nos servizos
+			prestados por terceiros a través del. En consecuencia, non será responsable de ningún dano que tales elementos poidan causar
+			no sistema informático do usuario, documentos electrónicos ou ficheiros.
+		</p>
+		<p>
+			O usuario será responsable de calquera dano ou prexuízo de calquera natureza que Galtaxi poida sufrir como consecuencia do incumprimento por parte do usuario
+			da lei, deste Aviso Legal ou das demais condicións establecidas no Sitio Web.
+		</p>
 
-        <h2>11. Commercial communications</h2>
-        <p>
-            Galtaxi will not send commercial communications by email or other equivalent electronic means
-            that have not been previously requested or expressly authorized by the user, in accordance with current regulations.
-        </p>
-        <p>
-            The user may revoke at any time the consent given to receive commercial communications
-            by sending an email to <a href="mailto:hola@galtaxi.com">hola@galtaxi.com</a>.
-        </p>
+		<h2>11. Comunicacións comerciais</h2>
+		<p>
+			Galtaxi non enviará comunicacións comerciais por correo electrónico ou outros medios electrónicos equivalentes
+			que non fosen previamente solicitadas ou expresamente autorizadas polo usuario, de conformidade coa normativa vixente.
+		</p>
+		<p>
+			O usuario poderá revogar en calquera momento o consentimento prestado para a recepción de comunicacións comerciais
+			enviando un correo electrónico a <a href="mailto:hola@galtaxi.com">hola@galtaxi.com</a>.
+		</p>
 
-        <h2>12. Applicable law and jurisdiction</h2>
-        <p>
-            This Legal Notice is governed by Spanish law. For any matters that may arise regarding the interpretation,
-            performance, or enforcement of this Legal Notice, the parties submit, expressly waiving any other jurisdiction that may apply,
-            to the Courts and Tribunals of Puerto del Rosario (Las Palmas), unless consumer and user regulations establish a different mandatory forum.
-        </p>
+		<h2>12. Lexislación aplicable e xurisdición</h2>
+		<p>
+			Este Aviso Legal réxese pola lexislación española. Para calquera cuestión que poida xurdir sobre a interpretación,
+			cumprimento ou execución do presente Aviso Legal, as partes sométense, con renuncia expresa a calquera outro foro que lles puidese corresponder,
+			aos Xulgados e Tribunais de Puerto del Rosario (Las Palmas), salvo que a normativa de consumidores e usuarios estableza un foro imperativo diferente.
+		</p>
 
-        <h2>13. Contact</h2>
-        <p>
-            For any questions or queries related to this Legal Notice, users may contact Galtaxi through:
-        </p>
-        <ul>
-            <li><strong>Email:</strong> <a href="mailto:hola@galtaxi.com">hola@galtaxi.com</a></li>
-            <li><strong>Postal address:</strong> Calle Virgen de la PeÃ±a, 2, 35600 Puerto del Rosario, Las Palmas, Spain</li>
-        </ul>
+		<h2>13. Contacto</h2>
+		<p>
+			Para calquera dúbida ou consulta relacionada con este Aviso Legal, os usuarios poderán poñerse en contacto con Galtaxi a través de:
+		</p>
+		<ul>
+			<li><strong>Correo electrónico:</strong> <a href="mailto:hola@galtaxi.com">hola@galtaxi.com</a></li>
+			<li><strong>Enderezo postal:</strong> Rúa Virxe da Pena, 2, 35600 Puerto del Rosario, Las Palmas, España</li>
+		</ul>
 
-        <p><em>Last updated: 2025</em></p>
-    HTML,
+		<p><em>Última actualización: 2025</em></p>
+	HTML,
 ];
-
-

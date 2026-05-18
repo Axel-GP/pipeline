@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const stepImage = document.getElementById('funciona-image');
             const stepVideo = document.getElementById('funciona-video');
             const stepVideoSource = stepVideo?.querySelector('source');
+            const formulario = document.getElementById('reserva-form');
 
             if (steps.length > 0 && interactiveTiles.length > 0) {
                 let activeIndex = 0;
@@ -23,7 +24,25 @@ document.addEventListener('DOMContentLoaded', function () {
                     void icon.offsetWidth;
                     icon.classList.add('rotate-spin');
                 };
+                formulario.addEventListener('submit', function(e) {
+            e.preventDefault(); // Detenemos el envío normal
 
+            const siteKey = '6Lc5NS0sAAAAAFyfHcnmO_aYXbuyV8Q-P7fNY_SJ';
+
+            // Esperamos a que la API de reCAPTCHA esté lista
+            grecaptcha.ready(function() {
+                // Ejecuta la acción (ej: 'contact_submit') y obtiene el token
+                grecaptcha.execute(siteKey, { action: 'submit' })
+                    .then(function(token) {
+
+                        // Asigna el token al campo oculto
+                        document.getElementById('g-recaptcha-response').value = token;
+
+                        // Una vez que tenemos el token, enviamos el formulario
+                        formulario.submit();
+                    });
+            });
+        });
                 const activateStep = (index, manual = false) => {
                     activeIndex = index;
                     interactiveTiles.forEach(tile => {
@@ -356,11 +375,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (href && href.startsWith('#')) {
                             event.preventDefault();
                             const target = document.querySelector(href);
-                              if (target) {
+                            if (target) {
                                 const navHeight = getNavbarHeight();
                                 const targetOffset = target.getBoundingClientRect().top + window.scrollY - navHeight - 8;
                                 smoothScrollTo(Math.max(0, targetOffset));
-                              }
+                            }
                         }
                         if (navElement.classList.contains('show')) {
                             navCollapse.hide();

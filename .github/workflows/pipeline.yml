@@ -1,0 +1,33 @@
+name: Pipeline Laravel CI
+
+on:
+  push:
+    branches: [ main, master, develop ]
+
+jobs:
+  laravel-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+
+    - name: Configurar PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+
+    - name: Instalar dependencias (Composer)
+      run: composer install --no-progress --prefer-dist
+
+
+    - name: Preparar entorno Laravel
+      run: |
+        cp .env.example .env
+        php artisan key:generate
+
+
+    - name: Ejecutar pruebas unitarias (Artisan)
+      run: php artisan test

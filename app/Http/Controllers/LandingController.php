@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ContactMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 class LandingController extends Controller
 {
@@ -40,15 +41,51 @@ class LandingController extends Controller
             'nombre' => 'required|string|max:100',
             'telefono' => ['required', 'regex:/^\+?[0-9]{9,15}$/'],
             'mensaje' => 'required|string|max:500',
-            'captcha' => 'required|integer',
+
         ], [
             'telefono.regex' => __('ui.contact_form.validation_phone'),
         ]);
 
-        $expectedCaptcha = session()->pull('landing_captcha_answer');
-        if ($expectedCaptcha === null || intval($validated['captcha']) !== $expectedCaptcha) {
+        $token = $request->input('g-recaptcha-response');
+        $secretKey = env('RECAPTCHA_SECRET_KEY');
+        $umbral_seguridad = 0.6;
+
+        // Verificación inicial del token
+        if (empty($token)) {
             return $this->redirectToContactSection()
-                ->withErrors(['captcha' => __('ui.contact_form.captcha_invalid')])
+                ->withErrors(['captcha' => 'Error de seguridad: Token de reCAPTCHA faltante.'])
+                ->withInput();
+        }
+
+        // Llamada al servicio de verificación de Google
+        try {
+            $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                'secret' => $secretKey,
+                'response' => $token,
+                'remoteip' => $request->ip(),
+            ]);
+
+            $resultado = $response->json();
+
+        } catch (\Exception $e) {
+            Log::error('Error al contactar con reCAPTCHA: ' . $e->getMessage());
+            // Si Google no responde, por seguridad o por fallo, se asume un riesgo.
+            return $this->redirectToContactSection()
+                ->withErrors(['captcha' => 'Error de red. Inténtalo de nuevo.'])
+                ->withInput();
+        }
+
+        // Evaluación del resultado
+        if ($resultado['success'] === false || $resultado['score'] < $umbral_seguridad) {
+            $score = $resultado['score'] ?? 0;
+            Log::warning('Intento de bot detectado por reCAPTCHA.', [
+                'ip' => $request->ip(),
+                'score' => $score
+            ]);
+
+            // Retorna un error indicando fallo de seguridad
+            return $this->redirectToContactSection()
+                ->withErrors(['captcha' => "Verificación de seguridad fallida. Puntuación ({$score})."])
                 ->withInput();
         }
 
@@ -61,7 +98,7 @@ class LandingController extends Controller
             'user_agent' => $request->userAgent(),
         ]);
 
-        Log::info('Solicitud de reserva Galtaxi', $validated);
+        Log::info('Solicitud de reserva Galtaxi (Verificada por reCAPTCHA)', $validated);
 
         return $this->redirectToContactSection()->with('status', trans('home.sections.contact.success'));
     }

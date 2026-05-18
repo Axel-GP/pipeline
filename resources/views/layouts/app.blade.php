@@ -6,12 +6,12 @@
             <title>@yield('title', 'Galtaxi')</title>
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/taxixi_icono.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         :root {
             --taxixi-yellow: #0098cc;
             --taxixi-dark: #1f1f1f;
-            --taxixi-gray: #e2e8f0;
+            --taxixi-gray: #e6e2f0ff;
             --taxixi-light: #f8f9fa;
             --taxixi-shadow: rgba(15, 23, 42, 0.12);
         }
@@ -47,6 +47,8 @@
         .btn-primary-taxixi:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px var(--taxixi-shadow);
+            background-color:var(--taxixi-dark);
+            color: var(--taxixi-yellow);
         }
 
         .btn-outline-taxixi {
@@ -57,7 +59,7 @@
 
         .btn-outline-taxixi:hover {
             background-color: var(--taxixi-dark);
-            color: white;
+            color: var(--taxixi-yellow);
         }
 
         .card-soft {
