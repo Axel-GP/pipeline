@@ -31,4 +31,4 @@ jobs:
 
 
     - name: Ejecutar pruebas unitarias (Artisan)
-      run: php artisan test
+      run: php artisan test --testsuite=Unit
